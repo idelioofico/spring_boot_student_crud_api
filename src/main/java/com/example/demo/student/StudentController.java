@@ -1,5 +1,6 @@
 package com.example.demo.student;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.RouteMatcher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,23 +13,16 @@ import java.util.List;
 @RequestMapping(path = "api/v1/students")
 public class StudentController  {
 
+    private  final StudentService studentService;
+
+    @Autowired
+    public  StudentController(StudentService studentService){
+
+        this.studentService = studentService;
+    }
+
     @GetMapping
     public List<Student> get(){
-        return List.of(
-                new Student(
-                        1L,
-                        "Mariam",
-                        "miriam@gmail.com",
-                        LocalDate.of(1999, Month.MARCH,22),
-                        23
-                ),
-                new Student(
-                        1L,
-                        "Idelio Ofico",
-                        "oficoidelio@gmail.com",
-                        LocalDate.of(2000, Month.JANUARY,12),
-                        22
-                )
-        );
+        return  this.studentService.get();
     }
 }
