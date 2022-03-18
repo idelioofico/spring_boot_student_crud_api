@@ -24,9 +24,18 @@ public class StudentService {
       return studentRepository.findAll();
     }
 
-    @PostMapping(path = "/store")
+
     public  Student store(){
-        return studentRepository.save();
+
+        Student student=new Student(
+                "Maria Antonia",
+                "maria@gmail.com",
+                LocalDate.of(2004,12,12),
+
+
+        );
+
+        return studentRepository.save(student);
     }
 
 }
