@@ -75,7 +75,8 @@ public class Student {
 
     public Integer getAge() {
 
-        return Period.between(this.birth, LocalDate().getYear());
+//        return Period.between(this.birth, 2022);
+        return  22;
     }
 
     public void setAge(Integer age) {

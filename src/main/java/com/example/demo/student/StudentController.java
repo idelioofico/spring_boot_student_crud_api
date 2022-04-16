@@ -27,7 +27,7 @@ public class StudentController  {
         return  this.studentService.get();
     }
 
-    @PostMapping("/store")
+    @PostMapping
     public Student store(){
         return  this.studentService.store();
     }
