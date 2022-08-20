@@ -21,6 +21,13 @@ services:
     build: ./
     ports:
       - "8001:8080"
+    depends_on:
+      - db
+    environment:
+          - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:5000/student_crud
+          - SPRING_DATASOURCE_USERNAME=student_crud
+          - SPRING_DATASOURCE_PASSWORD=student_crud
+          - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
     networks:
       - student-network
 
