@@ -1,0 +1,40 @@
+version: "3.1"
+
+services:
+  db:
+    image: bitnami/mariadb:10.6
+    environment:
+        - ALLOW_EMPTY_PASSWORD=yes
+        - MARIADB_USER=student_crud
+        - MARIADB_PASSWORD=student_crud
+        - MARIADB_DATABASE=student_crud
+    volumes:
+        - student-mysql-data:/var/lib/mysql
+    ports:
+      - "5000:3306"
+    networks:
+      -  student-network
+
+  app:
+    image: maven:3.8-jdk-11
+    restart: always
+    build: ./
+    ports:
+      - "8001:8080"
+    networks:
+      - student-network
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - student-network
+
+volumes:
+  student-mysql-data:
+    driver: local
+
+networks:
+  student-network:
